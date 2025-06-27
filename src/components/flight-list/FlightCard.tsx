@@ -10,7 +10,7 @@ interface IFlightProps {
 export function FlightCard({ flight }: IFlightProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedFlight = searchParams.get(QUERY_PARAM_FLIGHT);
-  const isActive = selectedFlight === flight.airline;
+  const isActive = selectedFlight === flight.id;
   return (
     <div
       className={cn(
@@ -23,7 +23,7 @@ export function FlightCard({ flight }: IFlightProps) {
       <button
         onClick={() => {
           setSearchParams({
-            [QUERY_PARAM_FLIGHT]: flight.airline,
+            [QUERY_PARAM_FLIGHT]: flight.id,
           });
         }}
         className="bg-neutral-900 rounded-2xl p-6 block w-full"
@@ -32,11 +32,11 @@ export function FlightCard({ flight }: IFlightProps) {
           <div className="flex gap-2 items-center">
             <img
               src={flight.logo}
-              alt={flight.airline}
+              alt={flight.airline.name}
               width={40}
               className="rounded-full bg-white"
             />
-            <span>{flight.airline}</span>
+            <span>{flight.id}</span>
           </div>
           <div>
             <span className="bg-neutral-800 rounded-2xl py-0.5 px-2">

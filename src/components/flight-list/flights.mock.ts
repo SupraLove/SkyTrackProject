@@ -3,7 +3,11 @@ import { IFlight } from "../../types/flight.types";
 export const FLIGHTS_MOCK: IFlight[] = [
   {
     logo: "/logos/turkish.svg",
-    airline: "TK143",
+    id: "TK143",
+    airline: {
+      name: "Turkish Airlines",
+      country: "Turkey",
+    },
     aircraftReg: "TC-JFP",
     colorGradient: ["#1E3C72", "#2A5298"],
     airplane: {
@@ -32,7 +36,11 @@ export const FLIGHTS_MOCK: IFlight[] = [
   },
   {
     logo: "/logos/ryanair.svg",
-    airline: "RN1782",
+    id: "RN1782",
+    airline: {
+      name: "Ryanair",
+      country: "Ireland",
+    },
     aircraftReg: "D-AISP",
     colorGradient: ["#003566", "#ffc300"],
     airplane: {
@@ -61,7 +69,11 @@ export const FLIGHTS_MOCK: IFlight[] = [
   },
   {
     logo: "/logos/s7.svg",
-    airline: "S7124",
+    id: "S7124",
+    airline: {
+      name: "S7 Airlines",
+      country: "Russia",
+    },
     aircraftReg: "RA-73415",
     colorGradient: ["#00C853", "#64DD17"],
     airplane: {
@@ -90,7 +102,11 @@ export const FLIGHTS_MOCK: IFlight[] = [
   },
   {
     logo: "/logos/swiss.svg",
-    airline: "LX318",
+    id: "LX318",
+    airline: {
+      name: "Swiss International Air Lines",
+      country: "Switzerland",
+    },
     aircraftReg: "HB-JHK",
     colorGradient: ["#D32F2F", "#F44336"],
     airplane: {
@@ -119,7 +135,11 @@ export const FLIGHTS_MOCK: IFlight[] = [
   },
   {
     logo: "/logos/lufthansa.svg",
-    airline: "LH401",
+    id: "LH401",
+    airline: {
+      name: "Lufthansa",
+      country: "Germany",
+    },
     aircraftReg: "D-AIXD",
     colorGradient: ["#0F2027", "#2C5364"],
     airplane: {
