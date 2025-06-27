@@ -21,8 +21,8 @@ export function FlightDetails() {
   if (!flight) return null;
 
   return (
-    <div
-      className="fixed w-sm top-7 right-7 h-full rounded-2xl bg-[#101010]"
+    <aside
+      className="fixed w-sm top-7 right-7 h-full rounded-2xl bg-[#101010] overflow-hidden"
       style={{ height: "calc(100% - 56px)" }}
     >
       <FlightHeaders flight={flight} />
@@ -35,6 +35,6 @@ export function FlightDetails() {
       <FlightInformation flight={flight} />
 
       <FlightActions />
-    </div>
+    </aside>
   );
 }
