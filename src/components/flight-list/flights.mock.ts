@@ -77,7 +77,7 @@ export const FLIGHTS_MOCK: IFlight[] = [
     aircraftReg: "RA-73415",
     colorGradient: ["#00C853", "#64DD17"],
     airplane: {
-      name: "Sukhoi Superjet 100",
+      name: "Superjet 100",
       image: "/airplanes/03_s7_Airbus-A320.png",
     },
     route: {

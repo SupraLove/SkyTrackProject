@@ -22,7 +22,7 @@ export function FlightDetails() {
 
   return (
     <aside
-      className="fixed w-sm top-1/2 -translate-y-1/2 right-7 h-full rounded-2xl bg-[#101010] overflow-hidden"
+      className=" fixed right-7 top-10 w-sm bg-[#101010] rounded-2xl overflow-hidden"
       // style={{ height: "calc(100% - 56px)" }}
     >
       <FlightHeaders flight={flight} />
