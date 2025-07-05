@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import { IFlight } from '../../types/flight.types'
 import { cn } from '../../utils/cn'
+import { ProgressBar } from '../custom-ui/ProgressBar'
 
 import { FlightCardActions } from './actions/FlightCardActions'
 import { QUERY_PARAM_FLIGHT } from './flights.constants'
@@ -49,12 +50,15 @@ export function FlightCard({ flight }: IFlightProps) {
 					</div>
 				</div>
 
-				<div className='flex items-center justify-between'>
+				<div className='grid grid-cols-[1fr_5fr_1fr] items-end gap-3'>
 					<div className='space-y-1 text-left'>
 						<div> {flight.from.city}</div>
 						<div className='text-3xl font-semibold'> {flight.from.code}</div>
 					</div>
-					<div>{/*Progress bar*/}</div>
+					<div className='mb-4'>
+						<ProgressBar percent={flight.progress} />
+					</div>
+
 					<div>
 						<div>
 							<div> {flight.to.city}</div>
