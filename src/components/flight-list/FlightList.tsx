@@ -14,7 +14,7 @@ export function FlightList() {
 	}, [fromCountry])
 
 	return (
-		<div className='m-8 w-sm gap-3 space-y-4'>
+		<div className='m-8 w-sm space-y-7'>
 			<Filters fromCountry={fromCountry} setFromCountry={setFromCountry} />
 			<div>
 				{filteredFlights.map(flight => (
