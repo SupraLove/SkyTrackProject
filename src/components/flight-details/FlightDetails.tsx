@@ -24,7 +24,7 @@ export function FlightDetails() {
 
 	return (
 		<aside
-			className='xs:w-full xs:inset-0 xs:rounded-none fixed top-15 right-7 w-sm overflow-hidden rounded-2xl bg-[#101010]'
+			className='xs:w-full xs:inset-0 xs:rounded-none fixed top-15 right-7 w-sm overflow-hidden rounded-2xl bg-[#101010] sm:inset-[0.6rem] sm:top-28 sm:w-[96%] md:top-32 md:w-xs'
 			// style={{ height: "calc(100% - 56px)" }}
 		>
 			<FlightHeaders flight={flight} />
