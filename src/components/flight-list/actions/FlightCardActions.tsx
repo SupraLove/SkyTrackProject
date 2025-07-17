@@ -27,7 +27,7 @@ export function FlightCardActions({ flghtId }: Props) {
 	}, [dispatch, flghtId, isFavorites])
 
 	return (
-		<div className='absolute top-1 right-1 z-50 flex size-9 h-full origin-top-right scale-0 flex-col gap-2 px-3 opacity-0 transition-all duration-500 group-hover:-right-10 group-hover:scale-100 group-hover:opacity-100'>
+		<div className='xs:h-auto xs:w-full xs:origin-bottom-right xs:right-0 xs:top-1 xs:justify-end xs:flex-row xs:group-hover:right-auto xs:group-hover:-top-10 xs:px-1 absolute top-1 right-1 z-50 flex size-9 h-full origin-top-right scale-0 flex-col gap-2 px-3 opacity-0 transition-all duration-500 group-hover:-right-10 group-hover:scale-100 group-hover:opacity-100'>
 			<Button
 				onClick={handleToggleFavorite}
 				asChild

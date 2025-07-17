@@ -12,8 +12,8 @@ export function Header() {
 	const location = useLocation()
 	return (
 		// lg:w-full lg:relative lg:top-0 lg:mb-7
-		<div className='absolute top-15 left-1/2 flex w-4/12 -translate-x-1/2 items-center justify-between rounded-full bg-neutral-800 p-2 pr-6 shadow'>
-			<div className='flex items-center gap-4'>
+		<div className='xs:flex-col xs:p-4 xs:rounded-3xl absolute top-15 left-1/2 flex w-full max-w-2xl -translate-x-1/2 items-center justify-between rounded-full bg-neutral-800 p-2 pr-6 shadow lg:relative lg:top-0 lg:mb-7 lg:w-full'>
+			<div className='xs:flex-col flex items-center gap-4'>
 				<img
 					src='./airlogoheader.svg'
 					alt='airlogoheader'
@@ -33,11 +33,13 @@ export function Header() {
 				</nav>
 			</div>
 			<div className='flex items-center gap-4'>
-				<Button asChild variant='secondary' size='icon' className='size-11'>
-					<Link
-						to='./favorites'
-						// className='flex items-center justify-center rounded-full bg-neutral-800 p-2 transition-colors hover:bg-neutral-700'
-					>
+				<Button
+					asChild
+					variant='secondary'
+					size='icon'
+					className='flex size-11 items-center justify-center rounded-full bg-neutral-800 p-2 transition-colors hover:bg-neutral-700'
+				>
+					<Link to='./favorites'>
 						<Heart size={25} />
 					</Link>
 				</Button>

@@ -15,11 +15,9 @@ export function ThemeToggle() {
 				}}
 				variant='secondary'
 				size='icon'
-				className='size-11'
+				className='flex size-11 items-center justify-center rounded-full bg-neutral-800 p-2 transition-colors hover:bg-neutral-700'
 			>
-				{/* <button className='flex items-center justify-center rounded-full bg-neutral-800 p-2 transition-colors hover:bg-neutral-700'> */}
 				{theme === 'dark' ? <Moon size={25} /> : <Sun size={25} />}
-				{/* </button> */}
 			</Button>
 		</>
 	)
