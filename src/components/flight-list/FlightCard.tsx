@@ -18,7 +18,7 @@ export function FlightCard({ flight }: IFlightProps) {
 	return (
 		<div
 			className={cn(
-				'group relative w-full rounded-2xl p-0.5 transition-colors ease-in',
+				'group animate-fadeIn relative w-full rounded-2xl p-0.5 transition-colors ease-in',
 				isActive
 					? 'bg-gradient-to-r from-rose-500 to-orange-300'
 					: 'bg-transparent'
