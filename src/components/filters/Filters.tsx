@@ -26,7 +26,7 @@ export function Filters({
 }: Props) {
 	return (
 		<div className='flex flex-col gap-1.5'>
-			<div className='rounded-xl bg-neutral-800'>
+			<div className='rounded-lg bg-neutral-800'>
 				<FilterSearchSelect
 					data={fromCountries}
 					entityName='country'
@@ -34,7 +34,7 @@ export function Filters({
 					onChange={setFromCountry}
 				/>
 			</div>
-			<div className='rounded-xl bg-neutral-800'>
+			<div className='rounded-lg bg-neutral-800'>
 				<FilterSearchSelect
 					data={airlines}
 					entityName='airline'

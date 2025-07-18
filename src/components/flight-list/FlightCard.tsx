@@ -31,7 +31,7 @@ export function FlightCard({ flight }: IFlightProps) {
 						[QUERY_PARAM_FLIGHT]: flight.id
 					})
 				}}
-				className='block w-full rounded-2xl bg-neutral-900 p-6'
+				className='bg-card block w-full rounded-2xl p-6'
 			>
 				<div className='mb-7 flex items-center justify-between gap-2'>
 					<div className='flex items-center gap-2'>
@@ -41,10 +41,10 @@ export function FlightCard({ flight }: IFlightProps) {
 							width={40}
 							className='rounded-full bg-white'
 						/>
-						<span>{flight.id}</span>
+						<span className='text-accent-foreground'>{flight.id}</span>
 					</div>
 					<div>
-						<span className='rounded-2xl bg-neutral-800 px-2 py-0.5'>
+						<span className='bg-muted-foreground text-accent-foreground rounded-2xl px-2 py-0.5'>
 							{flight.aircraftReg}
 						</span>
 					</div>
@@ -52,8 +52,11 @@ export function FlightCard({ flight }: IFlightProps) {
 
 				<div className='grid grid-cols-[1fr_5fr_1fr] items-end gap-3'>
 					<div className='space-y-1 text-left'>
-						<div> {flight.from.city}</div>
-						<div className='text-3xl font-semibold'> {flight.from.code}</div>
+						<div className='text-accent-foreground'> {flight.from.city}</div>
+						<div className='text-accent-foreground text-3xl font-semibold'>
+							{' '}
+							{flight.from.code}
+						</div>
 					</div>
 					<div className='mb-4'>
 						<ProgressBar percent={flight.progress} />
@@ -61,8 +64,11 @@ export function FlightCard({ flight }: IFlightProps) {
 
 					<div>
 						<div>
-							<div> {flight.to.city}</div>
-							<div className='text-3xl font-semibold'> {flight.to.code}</div>
+							<div className='text-accent-foreground'> {flight.to.city}</div>
+							<div className='text-accent-foreground text-3xl font-semibold'>
+								{' '}
+								{flight.to.code}
+							</div>
 						</div>
 					</div>
 				</div>
