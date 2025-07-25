@@ -15,6 +15,7 @@ export interface IFlightLocation {
 	countryCode: string
 	timeZone: string
 	code: string
+	coordinates: [number, number]
 }
 
 export interface IFlightAirline {
@@ -33,4 +34,5 @@ export interface IFlight {
 	to: IFlightLocation
 	aircraftReg: string
 	progress: number
+	currentLocation: Pick<IFlightLocation, 'coordinates'>
 }

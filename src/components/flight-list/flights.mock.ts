@@ -24,16 +24,21 @@ export const FLIGHTS_MOCK: IFlight[] = [
 			country: 'Bulgaria',
 			countryCode: 'BG',
 			timeZone: 'UTC+3',
-			code: 'SOF'
+			code: 'SOF',
+			coordinates: [42.6977, 23.3219]
 		},
 		to: {
 			city: 'Beijing',
 			country: 'China',
 			countryCode: 'CN',
 			timeZone: 'UTC+8',
-			code: 'PEK'
+			code: 'PEK',
+			coordinates: [39.9042, 116.4074]
 		},
-		progress: 75
+		progress: 75,
+		currentLocation: {
+			coordinates: [40.6977, 91.3219]
+		}
 	},
 	{
 		logo: '/logos/ryanair.svg',
@@ -58,16 +63,21 @@ export const FLIGHTS_MOCK: IFlight[] = [
 			country: 'Ireland',
 			countryCode: 'IE',
 			timeZone: 'UTC+1',
-			code: 'DUB'
+			code: 'DUB',
+			coordinates: [53.3498, -6.2603]
 		},
 		to: {
 			city: 'Larnaca',
 			country: 'Cyprus',
 			countryCode: 'CY',
 			timeZone: 'UTC+3',
-			code: 'LCA'
+			code: 'LCA',
+			coordinates: [34.8751, 33.6249]
 		},
-		progress: 60
+		progress: 60,
+		currentLocation: {
+			coordinates: [44.0, 15.0]
+		}
 	},
 	{
 		logo: '/logos/s7.svg',
@@ -92,16 +102,21 @@ export const FLIGHTS_MOCK: IFlight[] = [
 			country: 'France',
 			countryCode: 'FR',
 			timeZone: 'UTC+2',
-			code: 'NCE'
+			code: 'NCE',
+			coordinates: [43.7102, 7.262]
 		},
 		to: {
 			city: 'Tbilisi',
 			country: 'Georgia',
 			countryCode: 'GE',
 			timeZone: 'UTC+4',
-			code: 'TBS'
+			code: 'TBS',
+			coordinates: [41.7151, 44.8271]
 		},
-		progress: 80
+		progress: 80,
+		currentLocation: {
+			coordinates: [42.7, 26.0]
+		}
 	},
 	{
 		logo: '/logos/swiss.svg',
@@ -126,16 +141,21 @@ export const FLIGHTS_MOCK: IFlight[] = [
 			country: 'Portugal',
 			countryCode: 'PT',
 			timeZone: 'UTC+1',
-			code: 'OPO'
+			code: 'OPO',
+			coordinates: [41.1496, -8.6109]
 		},
 		to: {
 			city: 'Baku',
 			country: 'Azerbaijan',
 			countryCode: 'AZ',
 			timeZone: 'UTC+4',
-			code: 'GYD'
+			code: 'GYD',
+			coordinates: [40.4675, 50.0467]
 		},
-		progress: 90
+		progress: 90,
+		currentLocation: {
+			coordinates: [43.0, 25.0]
+		}
 	},
 	{
 		logo: '/logos/lufthansa.svg',
@@ -160,15 +180,20 @@ export const FLIGHTS_MOCK: IFlight[] = [
 			country: 'Bulgaria',
 			countryCode: 'BG',
 			timeZone: 'UTC+3',
-			code: 'BOJ'
+			code: 'BOJ',
+			coordinates: [42.5048, 27.4626]
 		},
 		to: {
 			city: 'Muscat',
 			country: 'Oman',
 			countryCode: 'OM',
 			timeZone: 'UTC+4',
-			code: 'MCT'
+			code: 'MCT',
+			coordinates: [23.5933, 58.2844]
 		},
-		progress: 45
+		progress: 45,
+		currentLocation: {
+			coordinates: [33.0, 42.0]
+		}
 	}
 ]
