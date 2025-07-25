@@ -12,7 +12,6 @@
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
 	background-color: #84c7f2;
-	background-image: url('/background.jpg');
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -87,7 +86,6 @@ button {
 }
 
 .dark {
-	background-image: url('/background2.jpg');
 	--foreground: oklch(0.985 0 0);
 	--card: oklch(0.205 0 0);
 	--card-foreground: oklch(0.985 0 0);

@@ -3,9 +3,14 @@ import { useEffect, useMemo, useRef } from 'react'
 import Map, { Layer, MapRef, Marker, Source } from 'react-map-gl/maplibre'
 
 import { useCurrentFlight } from '../../hooks/useCurrentFlight'
+import { useTheme } from '../../providers/theme/useTheme'
 import { FLIGHTS_MOCK } from '../flight-list/flights.mock'
 
-import { dashedStyle, solidStyle } from './sky-track-map.utils'
+import {
+	createSplitGreatCircle,
+	dashedStyle,
+	solidStyle
+} from './sky-track-map.utils'
 
 import 'maplibre-gl/dist/maplibre-gl.css'
 
@@ -47,33 +52,61 @@ export function SkyTrackMap() {
 		return [all.slice(0, 2), all.slice(1)]
 	}, [flight])
 
-	const solidGeoJson: GeoJSON.FeatureCollection = {
-		type: 'FeatureCollection',
-		features: [
-			{
-				type: 'Feature',
-				geometry: {
-					type: 'LineString',
-					coordinates: solidCoords
-				},
-				properties: {}
-			}
-		]
-	}
+	// const solidGeoJson: GeoJSON.FeatureCollection = {
+	// 	type: 'FeatureCollection',
+	// 	features: [
+	// 		{
+	// 			type: 'Feature',
+	// 			geometry: {
+	// 				type: 'LineString',
+	// 				coordinates: solidCoords
+	// 			},
+	// 			properties: {}
+	// 		}
+	// 	]
+	// }
 
-	const dashedGeoJson: GeoJSON.FeatureCollection = {
-		type: 'FeatureCollection',
-		features: [
-			{
-				type: 'Feature',
-				geometry: {
-					type: 'LineString',
-					coordinates: dashedCoords
-				},
-				properties: {}
+	// const dashedGeoJson: GeoJSON.FeatureCollection = {
+	// 	type: 'FeatureCollection',
+	// 	features: [
+	// 		{
+	// 			type: 'Feature',
+	// 			geometry: {
+	// 				type: 'LineString',
+	// 				coordinates: dashedCoords
+	// 			},
+	// 			properties: {}
+	// 		}
+	// 	]
+	// }
+
+	const { solidFeature, dashedFeature, snappedPoint, bearing } = useMemo(() => {
+		if (!flight?.from || !flight?.to || !flight?.currentLocation) {
+			return {
+				solidFeature: null,
+				dashedFeature: null,
+				snappedPoint: null,
+				bearing: 0
 			}
+		}
+
+		const from: [number, number] = [
+			flight.from.coordinates[1],
+			flight.from.coordinates[0]
 		]
-	}
+		const to: [number, number] = [
+			flight.to.coordinates[1],
+			flight.to.coordinates[0]
+		]
+		const current: [number, number] = [
+			flight.currentLocation.coordinates[1],
+			flight.currentLocation.coordinates[0]
+		]
+
+		return createSplitGreatCircle(from, to, current)
+	}, [flight])
+
+	const { theme } = useTheme()
 
 	return (
 		<Map
@@ -84,35 +117,54 @@ export function SkyTrackMap() {
 				zoom: 6
 			}}
 			style={{ width: '100%', height: '100vh' }}
-			mapStyle='https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+			mapStyle={
+				theme === 'dark'
+					? 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+					: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json'
+			}
 		>
-			{solidCoords.length > 1 && (
-				<Source id='route-solid' type='geojson' data={solidGeoJson}>
-					<Layer {...solidStyle} />
+			{solidCoords.length > 1 && solidFeature && (
+				<Source
+					id='route-solid'
+					type='geojson'
+					data={{
+						type: 'FeatureCollection',
+						features: [solidFeature]
+					}}
+				>
+					<Layer {...solidStyle(theme)} />
 				</Source>
 			)}
 
-			{dashedCoords.length > 1 && (
-				<Source id='route-dashed' type='geojson' data={dashedGeoJson}>
-					<Layer {...dashedStyle} />
+			{dashedCoords.length > 1 && dashedFeature && (
+				<Source
+					id='route-dashed'
+					type='geojson'
+					data={{
+						type: 'FeatureCollection',
+						features: [dashedFeature]
+					}}
+				>
+					<Layer {...dashedStyle(theme)} />
 				</Source>
 			)}
 
-			{flight?.currentLocation.coordinates?.length &&
-				flight.currentLocation.coordinates.length > 1 && (
-					<Marker
-						latitude={flight?.currentLocation.coordinates[0] || 37.8}
-						longitude={flight?.currentLocation.coordinates[1] || -122.4}
+			{snappedPoint && (
+				<Marker latitude={snappedPoint[1]} longitude={snappedPoint[0]}>
+					<div
+						style={{
+							transform: `rotate(${bearing - 45}deg)`,
+							transformOrigin: 'center',
+							transition: 'transform 0.3s ease'
+						}}
 					>
-						<Plane
-							fill='orange'
-							strokeWidth={0}
-							className='absolute top-1/2 right-0 -translate-y-1/2 rotate-45'
-						/>
-					</Marker>
-				)}
-			{flight?.currentLocation.coordinates?.length &&
-				flight.currentLocation.coordinates.length > 1 && (
+						<Plane strokeWidth={0} size={28} className='fill-foreground' />
+					</div>
+				</Marker>
+			)}
+
+			{flight?.from.coordinates?.length &&
+				flight.from.coordinates.length > 1 && (
 					<Marker
 						latitude={flight?.from.coordinates[0]}
 						longitude={flight?.from.coordinates[1]}
@@ -121,15 +173,14 @@ export function SkyTrackMap() {
 					</Marker>
 				)}
 
-			{flight?.currentLocation.coordinates?.length &&
-				flight.currentLocation.coordinates.length > 1 && (
-					<Marker
-						latitude={flight?.to.coordinates[0]}
-						longitude={flight?.to.coordinates[1]}
-					>
-						<Dot size={30} className='text-orange-400' />
-					</Marker>
-				)}
+			{flight?.to.coordinates?.length && flight.to.coordinates.length > 1 && (
+				<Marker
+					latitude={flight?.to.coordinates[0]}
+					longitude={flight?.to.coordinates[1]}
+				>
+					<Dot size={30} className='text-orange-400' />
+				</Marker>
+			)}
 
 			{!!currentOtherFlightCoordinates?.length &&
 				currentOtherFlightCoordinates.map(coordinate => (
@@ -141,7 +192,7 @@ export function SkyTrackMap() {
 						<Plane
 							strokeWidth={0}
 							size={20}
-							className='fill-foreground opacity-30'
+							className='fill-destructive opacity-40'
 						/>
 					</Marker>
 				))}

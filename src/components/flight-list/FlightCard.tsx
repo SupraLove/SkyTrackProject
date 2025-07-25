@@ -18,10 +18,8 @@ export function FlightCard({ flight }: IFlightProps) {
 	return (
 		<div
 			className={cn(
-				'group animate-fadeIn relative w-full rounded-2xl p-0.5 transition-colors ease-in',
-				isActive
-					? 'bg-gradient-to-r from-rose-500 to-orange-300'
-					: 'bg-transparent'
+				'group animate-fadeIn relative mb-3 w-full rounded-2xl p-0.5 shadow-xl transition-colors ease-in',
+				isActive ? 'bg-gradient-to-r from-rose-500 to-orange-300' : 'bg-card'
 			)}
 		>
 			<FlightCardActions flghtId={flight.id} />
@@ -31,7 +29,7 @@ export function FlightCard({ flight }: IFlightProps) {
 						[QUERY_PARAM_FLIGHT]: flight.id
 					})
 				}}
-				className='bg-card block w-full rounded-2xl p-6'
+				className='bg-card block w-full rounded-2xl p-5'
 			>
 				<div className='mb-7 flex items-center justify-between gap-2'>
 					<div className='flex items-center gap-2'>

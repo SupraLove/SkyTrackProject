@@ -27,7 +27,7 @@ export function FlightDetails() {
 					duration: 0.4,
 					ease: [0.3, 0.4, 0.45, 0.95]
 				}}
-				className='xs:w-full xs:inset-0 xs:rounded-none bg-card fixed top-15 right-7 z-10 w-sm overflow-hidden rounded-2xl sm:inset-[0.6rem] sm:top-28 sm:w-[96%] md:top-32 md:w-xs'
+				className='xs:w-full xs:inset-0 xs:rounded-none bg-card fixed top-15 right-7 z-10 w-sm overflow-hidden rounded-2xl shadow-xl sm:inset-[0.6rem] sm:top-28 sm:w-[96%] md:top-32 md:w-xs'
 				// style={{ height: "calc(100% - 56px)" }}
 			>
 				<FlightHeaders flight={flight} />
